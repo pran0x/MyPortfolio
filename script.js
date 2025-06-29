@@ -1,12 +1,19 @@
 // Enhanced hacker portfolio JavaScript
-document.addEventListener("DOMContentLoaded", () => {  // Initialize navigation
+document.addEventListener("DOMContentLoaded", () => {
+  // Initialize navigation
   initNavigation();
+  
+  // Initialize terminal controls
+  initTerminalControls();
   
   // Matrix rain effect
   createMatrixRain();
   
   // Boot sequence
   handleBootSequence();
+  
+  // Add realistic boot effects
+  addBootEffects();
   
   // Glitch text effects
   enhanceGlitchText();
@@ -18,11 +25,10 @@ document.addEventListener("DOMContentLoaded", () => {  // Initialize navigation
   addTerminalEffects();
   
   // Mouse tracking glow effect
-  addMouseGlow();  
+  addMouseGlow();
+  
   // Random text corruption
   addTextCorruption();
-    // Navigation functionality
-  initNavigation();
   
   // Initialize real-time clock
   initSystemClock();
@@ -86,17 +92,87 @@ function createMatrixRain() {
 function handleBootSequence() {
   const bootSequence = document.getElementById('bootSequence');
   const mainTerminal = document.getElementById('mainTerminal');
+  const bootLines = document.querySelectorAll('.boot-line');
   
   // Hide main terminal initially
   mainTerminal.style.opacity = '0';
   mainTerminal.style.transform = 'translateY(20px)';
   
+  // Add realistic loading delays and effects
+  bootLines.forEach((line, index) => {
+    setTimeout(() => {
+      // Remove cursor from previous line
+      if (index > 0) {
+        bootLines[index - 1].classList.add('completed');
+      }
+      
+      // Add some random delay to make it feel more realistic
+      const randomDelay = Math.random() * 200;
+      setTimeout(() => {
+        line.classList.add('completed');
+      }, 800 + randomDelay);
+    }, index * 700 + 300);
+  });
+  
+  // Transition to main terminal after boot sequence
   setTimeout(() => {
     bootSequence.style.display = 'none';
     mainTerminal.style.opacity = '1';
     mainTerminal.style.transform = 'translateY(0)';
-    mainTerminal.style.transition = 'all 1s ease-out';
-  }, 4000);
+    mainTerminal.style.transition = 'all 1.5s ease-out';
+  }, 12000); // Match the CSS animation duration
+}
+
+// Add realistic hacker-style boot effects
+function addBootEffects() {
+  const bootLines = document.querySelectorAll('.boot-line');
+  const hackingChars = '!@#$%^&*()_+-=[]{}|;:,.<>?';
+  
+  bootLines.forEach((line, index) => {
+    // Skip header and final lines
+    if (line.classList.contains('boot-header') || 
+        line.classList.contains('boot-final') || 
+        line.classList.contains('boot-access')) {
+      return;
+    }
+    
+    setTimeout(() => {
+      // Add character scrambling effect during typing
+      const originalText = line.textContent;
+      const words = originalText.split(' ');
+      
+      // Scramble effect for the first few characters
+      let scrambleCount = 0;
+      const scrambleInterval = setInterval(() => {
+        if (scrambleCount > 3) {
+          clearInterval(scrambleInterval);
+          line.textContent = originalText;
+          return;
+        }
+        
+        let scrambledText = '';
+        for (let i = 0; i < originalText.length; i++) {
+          if (Math.random() > 0.7 && originalText[i] !== ' ') {
+            scrambledText += hackingChars[Math.floor(Math.random() * hackingChars.length)];
+          } else {
+            scrambledText += originalText[i];
+          }
+        }
+        line.textContent = scrambledText;
+        scrambleCount++;
+      }, 100);
+      
+      // Add random pause effect
+      if (Math.random() > 0.6) {
+        setTimeout(() => {
+          line.style.opacity = '0.5';
+          setTimeout(() => {
+            line.style.opacity = '1';
+          }, 200);
+        }, 500);
+      }
+    }, index * 700 + Math.random() * 300);
+  });
 }
 
 // Enhanced glitch text effects
@@ -518,3 +594,197 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+
+// Terminal Controls Functionality
+function initTerminalControls() {
+  const closeBtn = document.getElementById('closeBtn');
+  const minimizeBtn = document.getElementById('minimizeBtn');
+  const maximizeBtn = document.getElementById('maximizeBtn');
+  const terminal = document.getElementById('mainTerminal');
+  const terminalTitle = document.querySelector('.terminal-title');
+  const shutdownOverlay = document.getElementById('shutdownOverlay');
+  // Close button - shutdown animation
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      // Add visual feedback
+      closeBtn.classList.add('active', 'loading');
+      
+      // Show shutdown overlay
+      shutdownOverlay.classList.add('active');
+      
+      // After shutdown animation completes, fade out the page
+      setTimeout(() => {
+        document.body.style.transition = 'opacity 2s ease-out';
+        document.body.style.opacity = '0';
+        
+        // Simulate system shutdown
+        setTimeout(() => {
+          // Reset everything for potential "reboot"
+          shutdownOverlay.classList.remove('active');
+          document.body.style.opacity = '1';
+          closeBtn.classList.remove('loading', 'active');
+          
+          // Show a brief "rebooting" message
+          const bootSequence = document.getElementById('bootSequence');
+          if (bootSequence) {
+            bootSequence.style.display = 'flex';
+            bootSequence.style.animation = 'none';
+            bootSequence.style.opacity = '1';
+            bootSequence.style.visibility = 'visible';
+            
+            setTimeout(() => {
+              bootSequence.style.animation = 'bootFadeOut 3s ease-in-out forwards';
+            }, 2000);
+          }
+        }, 3000);
+      }, 7000);
+    });
+  }
+  // Minimize button - hide main content
+  if (minimizeBtn) {
+    minimizeBtn.addEventListener('click', () => {
+      minimizeBtn.classList.add('active', 'loading');
+      
+      setTimeout(() => {
+        terminal.classList.toggle('minimized');
+        minimizeBtn.classList.remove('loading', 'active');
+        
+        // Add visual feedback
+        if (terminal.classList.contains('minimized')) {
+          showTerminalFeedback('TERMINAL MINIMIZED', 'warning');
+        } else {
+          showTerminalFeedback('TERMINAL RESTORED', 'success');
+        }
+      }, 300);
+    });
+  }
+  // Maximize button - fullscreen mode
+  if (maximizeBtn) {
+    maximizeBtn.addEventListener('click', () => {
+      maximizeBtn.classList.add('active', 'loading');
+      
+      setTimeout(() => {
+        terminal.classList.toggle('maximized');
+        maximizeBtn.classList.remove('loading', 'active');
+        
+        // Add visual feedback
+        if (terminal.classList.contains('maximized')) {
+          showTerminalFeedback('TERMINAL MAXIMIZED', 'success');
+        } else {
+          showTerminalFeedback('TERMINAL RESTORED', 'info');
+        }
+      }, 300);
+    });
+  }
+
+  // Terminal title click - replay boot sequence
+  if (terminalTitle) {
+    terminalTitle.addEventListener('click', () => {
+      const bootSequence = document.getElementById('bootSequence');
+      if (bootSequence) {
+        showTerminalFeedback('REBOOTING SYSTEM...', 'warning');
+        
+        setTimeout(() => {
+          bootSequence.style.display = 'flex';
+          bootSequence.style.animation = 'none';
+          bootSequence.style.opacity = '1';
+          bootSequence.style.visibility = 'visible';
+          
+          // Reset boot lines
+          const bootLines = bootSequence.querySelectorAll('.boot-line');
+          bootLines.forEach(line => {
+            line.classList.remove('completed');
+            line.style.animation = 'none';
+            line.style.opacity = '0';
+            line.style.width = '0';
+          });
+          
+          // Restart animations
+          setTimeout(() => {
+            bootLines.forEach((line, index) => {
+              setTimeout(() => {
+                line.style.animation = 'typewriterBoot 0.8s steps(40, end) forwards';
+              }, index * 700);
+            });
+          }, 100);
+          
+          // Hide boot sequence after completion
+          setTimeout(() => {
+            bootSequence.style.animation = 'bootFadeOut 3s ease-in-out forwards';
+          }, bootLines.length * 700 + 2000);
+        }, 1000);
+      }
+    });
+  }
+
+  // Escape key to exit fullscreen
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && terminal.classList.contains('maximized')) {
+      terminal.classList.remove('maximized');
+      showTerminalFeedback('EXITED FULLSCREEN', 'info');
+    }
+  });
+}
+
+// Terminal feedback system
+function showTerminalFeedback(message, type = 'info') {
+  const feedback = document.createElement('div');
+  feedback.className = `terminal-feedback terminal-feedback-${type}`;
+  feedback.textContent = message;
+  
+  // Style the feedback
+  feedback.style.cssText = `
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.9);
+    color: ${type === 'success' ? '#00ff00' : type === 'warning' ? '#ffff00' : type === 'error' ? '#ff0000' : '#00ffff'};
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid ${type === 'success' ? '#00ff00' : type === 'warning' ? '#ffff00' : type === 'error' ? '#ff0000' : '#00ffff'};
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9rem;
+    z-index: 10000;
+    animation: feedbackSlideIn 0.3s ease-out;
+    box-shadow: 0 0 20px ${type === 'success' ? 'rgba(0, 255, 0, 0.3)' : type === 'warning' ? 'rgba(255, 255, 0, 0.3)' : type === 'error' ? 'rgba(255, 0, 0, 0.3)' : 'rgba(0, 255, 255, 0.3)'};
+  `;
+
+  document.body.appendChild(feedback);
+
+  // Remove after 3 seconds
+  setTimeout(() => {
+    feedback.style.animation = 'feedbackSlideOut 0.3s ease-in forwards';
+    setTimeout(() => {
+      if (feedback.parentNode) {
+        feedback.parentNode.removeChild(feedback);
+      }
+    }, 300);
+  }, 3000);
+}
+
+// Add feedback animations to CSS
+const feedbackStyles = document.createElement('style');
+feedbackStyles.textContent = `
+  @keyframes feedbackSlideIn {
+    from { 
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to { 
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes feedbackSlideOut {
+    from { 
+      transform: translateX(0);
+      opacity: 1;
+    }
+    to { 
+      transform: translateX(100%);
+      opacity: 0;
+    }
+  }
+`;
+document.head.appendChild(feedbackStyles);

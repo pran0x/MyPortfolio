@@ -6,28 +6,51 @@
   <title>pran0x | Elite Cyber Arsenal</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <div class="matrix-bg"></div>
+<body>  <div class="matrix-bg"></div>
   <div class="crt-overlay"></div>
   <div class="grid-overlay"></div>
   
-  <!-- Boot sequence -->
+  <!-- Shutdown overlay -->
+  <div class="shutdown-overlay" id="shutdownOverlay">
+    <div class="shutdown-content">
+      <div class="shutdown-text">
+        <div class="shutdown-line">SYSTEM SHUTDOWN INITIATED...</div>
+        <div class="shutdown-line">Terminating active processes...</div>
+        <div class="shutdown-line">Clearing memory buffers...</div>
+        <div class="shutdown-line">Disconnecting from network...</div>
+        <div class="shutdown-line">Powering down systems...</div>
+        <div class="shutdown-line shutdown-final">GOODBYE, HACKER.</div>
+      </div>
+    </div>
+  </div>
+    <!-- Boot sequence -->
   <div class="boot-sequence" id="bootSequence">
     <div class="boot-text">
-      <div class="boot-line">INITIALIZING SECURE CONNECTION...</div>
-      <div class="boot-line">DECRYPTING IDENTITY MATRIX...</div>
-      <div class="boot-line">BYPASSING FIREWALL...</div>
-      <div class="boot-line">ACCESS GRANTED</div>
-    </div>  </div>
+      <div class="boot-line boot-header">REVOLVER-OS v2.47.1 Loading...</div>
+      <div class="boot-line">Initializing kernel modules... <span class="boot-success">[OK]</span></div>
+      <div class="boot-line">Loading secure network drivers... <span class="boot-success">[OK]</span></div>
+      <div class="boot-line">Mounting encrypted file systems... <span class="boot-success">[OK]</span></div>
+      <div class="boot-line">Starting tor anonymization layer... <span class="boot-success">[OK]</span></div>
+      <div class="boot-line">Initializing SSH daemon on port 2222... <span class="boot-success">[OK]</span></div>
+      <div class="boot-line">Loading intrusion detection system... <span class="boot-success">[OK]</span></div>
+      <div class="boot-line">Establishing secure tunnels... <span class="boot-success">[OK]</span></div>
+      <div class="boot-line">Decrypting identity matrix... <span class="boot-success">[OK]</span></div>
+      <div class="boot-line">Bypassing corporate firewalls... <span class="boot-success">[OK]</span></div>
+      <div class="boot-line">Connecting to darknet nodes... <span class="boot-success">[OK]</span></div>
+      <div class="boot-line">Loading portfolio interface... <span class="boot-success">[OK]</span></div>
+      <div class="loading-bar"></div>
+      <div class="boot-line boot-final">Welcome to the shadows, <span class="boot-status">pran0x</span></div>
+      <div class="boot-line boot-access">ACCESS GRANTED - Entering secure environment...</div>
+    </div>
+  </div>
   
   <main class="terminal" id="mainTerminal">
-    <div class="terminal-header">
-      <div class="terminal-controls">
-        <span class="control close"></span>
-        <span class="control minimize"></span>
-        <span class="control maximize"></span>
+    <div class="terminal-header">      <div class="terminal-controls">
+        <span class="control close" id="closeBtn" title="Shutdown System"></span>
+        <span class="control minimize" id="minimizeBtn" title="Minimize Terminal"></span>
+        <span class="control maximize" id="maximizeBtn" title="Maximize Terminal"></span>
       </div>
-      <span class="terminal-title">root@portfolio:~#</span>
+      <span class="terminal-title" title="Click to reboot system">root@portfolio:~#</span>
     </div>
       <!-- Navigation Bar -->
     <nav class="cyber-nav" id="cyberNav">
