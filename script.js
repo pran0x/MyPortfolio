@@ -32,7 +32,257 @@ document.addEventListener("DOMContentLoaded", () => {
   
   // Initialize real-time clock
   initSystemClock();
+  
+  // Initialize hacker terminal display functionality
+  initHackerTerminalDisplay();
 });
+
+// Initialize hacker terminal display
+function initHackerTerminalDisplay() {
+  // Create the hacker terminal display element
+  const hackerDisplay = document.createElement('div');
+  hackerDisplay.className = 'hacker-terminal-display';
+  hackerDisplay.id = 'hackerTerminalDisplay';
+  hackerDisplay.style.display = 'none';
+  
+  // Create the main hacker content
+  hackerDisplay.innerHTML = `
+    <div class="hacker-content">
+      <div class="hacker-text">R3v01v3R</div>
+      <div class="hacker-status">SYSTEM_STATUS: OPERATIONAL</div>
+      <div class="hacker-prompt">accessing_shadow_network...</div>
+      <div class="hacker-terminal-lines" id="hackerTerminalLines"></div>
+      <div class="hacker-instruction">Click anywhere to restore terminal | Press ESC or Ctrl+M</div>
+    </div>
+  `;
+  
+  document.body.appendChild(hackerDisplay);
+  
+  // Add click and keyboard listeners to restore from minimized state
+  hackerDisplay.addEventListener('click', restoreTerminal);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' || (e.ctrlKey && e.key === 'm')) {
+      const terminal = document.getElementById('mainTerminal');
+      if (terminal && terminal.classList.contains('minimized')) {
+        restoreTerminal();
+      }
+    }
+  });
+}
+
+// Function to restore terminal from minimized state
+function restoreTerminal() {
+  const terminal = document.getElementById('mainTerminal');
+  const hackerDisplay = document.getElementById('hackerTerminalDisplay');
+  const minimizeBtn = document.getElementById('minimizeBtn');
+  
+  if (terminal && terminal.classList.contains('minimized')) {
+    terminal.classList.remove('minimized');
+    if (hackerDisplay) {
+      hackerDisplay.style.display = 'none';
+      stopHackerAnimation();
+    }
+    if (minimizeBtn) {
+      minimizeBtn.classList.remove('active', 'loading');
+    }
+    showTerminalFeedback('TERMINAL RESTORED', 'success');
+  }
+}
+
+// Add periodic glitch effects to the hacker display
+function addHackerGlitchEffects() {
+  const hackerText = document.querySelector('.hacker-text');
+  const hackerStatus = document.querySelector('.hacker-status');
+  const hackerDisplay = document.getElementById('hackerTerminalDisplay');
+  
+  if (hackerText && hackerStatus && hackerDisplay) {
+    // Random glitch on main text
+    setInterval(() => {
+      if (Math.random() < 0.15) { // 15% chance every interval
+        hackerText.style.animation = 'none';
+        hackerText.classList.add('glitch-text');
+        setTimeout(() => {
+          hackerText.classList.remove('glitch-text');
+          hackerText.style.animation = 'hackerTextPulse 3s ease-in-out infinite';
+        }, 300);
+      }
+    }, 3000);
+    
+    // Random color shifts on status
+    setInterval(() => {
+      if (Math.random() < 0.2) { // 20% chance
+        const colors = ['#ff0000', '#ffff00', '#ff00ff', '#00ffff'];
+        const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        hackerStatus.style.color = randomColor;
+        hackerStatus.style.textShadow = `0 0 10px ${randomColor}`;
+        setTimeout(() => {
+          hackerStatus.style.color = '#00ffff';
+          hackerStatus.style.textShadow = '0 0 10px #00ffff';
+        }, 500);
+      }
+    }, 2000);
+    
+    // Random full display glitch effect
+    setInterval(() => {
+      if (Math.random() < 0.1) { // 10% chance for full display glitch
+        hackerDisplay.classList.add('glitch-active');
+        setTimeout(() => {
+          hackerDisplay.classList.remove('glitch-active');
+        }, 300);
+      }
+    }, 1500);
+  }
+}
+
+// Enhanced version of startHackerAnimation with more features
+function startHackerAnimation() {
+  const terminalLines = document.getElementById('hackerTerminalLines');
+  if (!terminalLines) return;
+  
+  // Clear any existing content
+  terminalLines.innerHTML = '';
+  
+  // Extended list of hacking terminal lines with more variety
+  const hackerLines = [
+    'Initializing neural network interface...',
+    'Bypassing ICE protocols...',
+    'Decrypting quantum encryption layers...',
+    'Infiltrating corporate mainframe...',
+    'Spoofing MAC addresses...',
+    'Tunneling through proxy chains...',
+    'Exploiting buffer overflow vulnerabilities...',
+    'Injecting malicious payloads...',
+    'Escalating privileges to root access...',
+    'Accessing classified databases...',
+    'Downloading sensitive intel...',
+    'Erasing digital footprints...',
+    'Establishing backdoor connections...',
+    'Cracking RSA-2048 encryption...',
+    'Intercepting network traffic...',
+    'Compromising security cameras...',
+    'Breaching biometric scanners...',
+    'Overriding firewall restrictions...',
+    'Extracting cryptographic keys...',
+    'Manipulating system logs...',
+    'Deploying steganographic protocols...',
+    'Activating zero-day exploits...',
+    'Penetrating air-gapped networks...',
+    'Reverse-engineering firmware...',
+    'Hijacking satellite communications...',
+    'Subverting authentication mechanisms...',
+    'Corrupting integrity checksums...',
+    'Initiating distributed denial of service...',
+    'Fragmenting packet streams...',
+    'Masquerading network identity...',
+    'Exploiting SQL injection vulnerabilities...',
+    'Bypassing two-factor authentication...',
+    'Cloning digital certificates...',
+    'Infiltrating cloud infrastructure...',
+    'Compromising DNS servers...',
+    'Executing remote code injection...',
+    'Harvesting user credentials...',
+    'Establishing command and control...',
+    'Deploying advanced persistent threats...',
+    'Exfiltrating intellectual property...',
+    'Manipulating blockchain transactions...',
+    'Bypassing intrusion detection systems...',
+    'Exploiting race condition vulnerabilities...',
+    'Intercepting encrypted communications...',
+    'Compromising hardware security modules...'
+  ];
+  
+  let lineIndex = 0;
+  let animationInterval;
+  
+  function addNextLine() {
+    if (lineIndex >= hackerLines.length) {
+      lineIndex = 0; // Reset to beginning for continuous loop
+    }
+    
+    const line = document.createElement('div');
+    line.className = 'hacker-line';
+    
+    // Occasionally add different status indicators
+    const statusTypes = ['[OK]', '[DONE]', '[SUCCESS]', '[COMPLETE]'];
+    const statusColors = ['#00ff00', '#00ffff', '#ffff00', '#ff6600'];
+    const randomStatus = Math.floor(Math.random() * statusTypes.length);
+    
+    line.innerHTML = `<span class="line-prompt">></span> <span class="line-text">${hackerLines[lineIndex]}</span> <span class="line-status" data-status="${randomStatus}">${statusTypes[randomStatus]}</span>`;
+    
+    // Add typewriter effect
+    const lineText = line.querySelector('.line-text');
+    const originalText = lineText.textContent;
+    lineText.textContent = '';
+    
+    let charIndex = 0;
+    const typeInterval = setInterval(() => {
+      if (charIndex < originalText.length) {
+        lineText.textContent += originalText[charIndex];
+        charIndex++;
+      } else {
+        clearInterval(typeInterval);
+        // Add custom colored [OK] indicator after typing completes
+        const statusElement = line.querySelector('.line-status');
+        statusElement.classList.add('status-glow');
+        statusElement.style.color = statusColors[randomStatus];
+        statusElement.style.borderColor = `${statusColors[randomStatus]}50`;
+        statusElement.style.textShadow = `0 0 10px ${statusColors[randomStatus]}`;
+        
+        // Add glitch effect occasionally
+        if (Math.random() < 0.25) {
+          lineText.classList.add('glitch-text');
+          setTimeout(() => lineText.classList.remove('glitch-text'), 200);
+        }
+        
+        // Occasionally make the whole line flash
+        if (Math.random() < 0.1) {
+          line.style.background = 'rgba(0, 255, 0, 0.2)';
+          setTimeout(() => {
+            line.style.background = '';
+          }, 300);
+        }
+      }
+    }, 25 + Math.random() * 50); // Variable typing speed
+    
+    terminalLines.appendChild(line);
+    
+    // Remove old lines to prevent overflow (keep last 12 lines)
+    const allLines = terminalLines.querySelectorAll('.hacker-line');
+    if (allLines.length > 12) {
+      allLines[0].style.animation = 'fadeOutLine 0.5s ease-out forwards';
+      setTimeout(() => {
+        if (allLines[0].parentNode) {
+          allLines[0].parentNode.removeChild(allLines[0]);
+        }
+      }, 500);
+    }
+    
+    lineIndex++;
+    
+    // Scroll to bottom
+    terminalLines.scrollTop = terminalLines.scrollHeight;
+  }
+  
+  // Start the animation
+  addNextLine();
+  animationInterval = setInterval(addNextLine, 1000 + Math.random() * 1500); // Random interval between lines
+  
+  // Store interval for cleanup
+  window.hackerAnimationInterval = animationInterval;
+  
+  // Add glitch effects to the hacker display
+  setTimeout(() => {
+    addHackerGlitchEffects();
+  }, 1000);
+}
+
+// Stop hacker animation
+function stopHackerAnimation() {
+  if (window.hackerAnimationInterval) {
+    clearInterval(window.hackerAnimationInterval);
+    window.hackerAnimationInterval = null;
+  }
+}
 
 // Matrix rain background effect
 function createMatrixRain() {
@@ -639,26 +889,35 @@ function initTerminalControls() {
         }, 3000);
       }, 7000);
     });
-  }
-  // Minimize button - hide main content
+  }  // Minimize button - hide main content and show hacker display
   if (minimizeBtn) {
     minimizeBtn.addEventListener('click', () => {
       minimizeBtn.classList.add('active', 'loading');
       
       setTimeout(() => {
         terminal.classList.toggle('minimized');
-        minimizeBtn.classList.remove('loading', 'active');
+        const hackerDisplay = document.getElementById('hackerTerminalDisplay');
         
-        // Add visual feedback
         if (terminal.classList.contains('minimized')) {
-          showTerminalFeedback('TERMINAL MINIMIZED', 'warning');
+          // Show hacker terminal display and start animation
+          if (hackerDisplay) {
+            hackerDisplay.style.display = 'flex';
+            startHackerAnimation();
+          }
+          showTerminalFeedback('TERMINAL MINIMIZED - Entering shadow network...', 'warning');
         } else {
+          // Hide hacker display and stop animation
+          if (hackerDisplay) {
+            hackerDisplay.style.display = 'none';
+            stopHackerAnimation();
+          }
           showTerminalFeedback('TERMINAL RESTORED', 'success');
         }
+        
+        minimizeBtn.classList.remove('loading', 'active');
       }, 300);
     });
-  }
-  // Maximize button - fullscreen mode
+  }// Maximize button - fullscreen mode
   if (maximizeBtn) {
     maximizeBtn.addEventListener('click', () => {
       maximizeBtn.classList.add('active', 'loading');
@@ -667,10 +926,17 @@ function initTerminalControls() {
         terminal.classList.toggle('maximized');
         maximizeBtn.classList.remove('loading', 'active');
         
-        // Add visual feedback
+        // Ensure body doesn't scroll when maximized
         if (terminal.classList.contains('maximized')) {
-          showTerminalFeedback('TERMINAL MAXIMIZED', 'success');
+          document.body.style.overflow = 'hidden';
+          // Scroll to top of terminal content
+          const mainContent = terminal.querySelector('.main-content');
+          if (mainContent) {
+            mainContent.scrollTop = 0;
+          }
+          showTerminalFeedback('TERMINAL MAXIMIZED - Press ESC to exit', 'success');
         } else {
+          document.body.style.overflow = 'auto';
           showTerminalFeedback('TERMINAL RESTORED', 'info');
         }
       }, 300);
@@ -716,11 +982,11 @@ function initTerminalControls() {
       }
     });
   }
-
   // Escape key to exit fullscreen
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && terminal.classList.contains('maximized')) {
       terminal.classList.remove('maximized');
+      document.body.style.overflow = 'auto';
       showTerminalFeedback('EXITED FULLSCREEN', 'info');
     }
   });
