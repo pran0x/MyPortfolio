@@ -1,5 +1,8 @@
 // Enhanced hacker portfolio JavaScript
 document.addEventListener("DOMContentLoaded", () => {
+  // Initialize mobile optimizations first
+  initMobileOptimizations();
+  
   // Initialize navigation
   initNavigation();
   
@@ -24,8 +27,10 @@ document.addEventListener("DOMContentLoaded", () => {
   // Terminal typing effects
   addTerminalEffects();
   
-  // Mouse tracking glow effect
-  addMouseGlow();
+  // Mouse tracking glow effect (disabled on mobile for performance)
+  if (!document.body.classList.contains('mobile-device')) {
+    addMouseGlow();
+  }
   
   // Random text corruption
   addTextCorruption();
@@ -1054,3 +1059,319 @@ feedbackStyles.textContent = `
   }
 `;
 document.head.appendChild(feedbackStyles);
+
+// Mobile optimization functions
+function initMobileOptimizations() {
+  // Detect mobile device
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  
+  if (isMobile || isTouch) {
+    document.body.classList.add('mobile-device');
+    
+    // Optimize animations for mobile
+    optimizeAnimationsForMobile();
+    
+    // Add touch-friendly interactions
+    addTouchFriendlyInteractions();
+    
+    // Prevent zoom on input focus
+    preventZoomOnFocus();
+    
+    // Add mobile-specific terminal behaviors
+    addMobileTerminalBehaviors();
+  }
+}
+
+// Optimize animations for mobile performance
+function optimizeAnimationsForMobile() {
+  // Reduce matrix rain particles on mobile
+  const matrixCanvas = document.querySelector('canvas');
+  if (matrixCanvas && window.innerWidth <= 768) {
+    // Reduce particle count for better performance
+    const originalCreateMatrix = createMatrixRain;
+    createMatrixRain = function() {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      canvas.style.position = 'fixed';
+      canvas.style.top = '0';
+      canvas.style.left = '0';
+      canvas.style.width = '100%';
+      canvas.style.height = '100%';
+      canvas.style.zIndex = '-1';
+      canvas.style.pointerEvents = 'none';
+      document.body.appendChild(canvas);
+      
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      
+      const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}";
+      const matrixArray = matrix.split("");
+      
+      const fontSize = 8; // Smaller font for mobile
+      const columns = Math.floor(canvas.width / fontSize / 2); // Fewer columns
+      
+      const drops = [];
+      for (let x = 0; x < columns; x++) {
+        drops[x] = 1;
+      }
+      
+      function drawMatrix() {
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.08)'; // More opaque for better performance
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.fillStyle = '#00ff00';
+        ctx.font = fontSize + 'px monospace';
+        
+        for (let i = 0; i < drops.length; i++) {
+          const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
+          ctx.fillText(text, i * fontSize * 2, drops[i] * fontSize);
+          
+          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+          }
+          drops[i]++;
+        }
+      }
+      
+      setInterval(drawMatrix, 50); // Slower refresh rate for mobile
+      
+      window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      });
+    };
+  }
+}
+
+// Add touch-friendly interactions
+function addTouchFriendlyInteractions() {
+  // Add haptic feedback for supported devices
+  function addHapticFeedback(element) {
+    element.addEventListener('touchstart', () => {
+      if (navigator.vibrate) {
+        navigator.vibrate(10); // Short vibration
+      }
+    });
+  }
+  
+  // Add haptic feedback to interactive elements
+  const interactiveElements = document.querySelectorAll(
+    '.control, .cyber-link, .social-link, .nav-skill-tag, .certificate-preview, .status-link'
+  );
+  
+  interactiveElements.forEach(addHapticFeedback);
+  
+  // Improve touch handling for terminal controls
+  const controls = document.querySelectorAll('.control');
+  controls.forEach(control => {
+    let touchStartTime;
+    
+    control.addEventListener('touchstart', (e) => {
+      touchStartTime = Date.now();
+      control.classList.add('touched');
+    });
+    
+    control.addEventListener('touchend', (e) => {
+      const touchDuration = Date.now() - touchStartTime;
+      if (touchDuration < 500) { // Short tap
+        setTimeout(() => {
+          control.classList.remove('touched');
+        }, 150);
+      }
+    });
+  });
+  
+  // Add touch-friendly swipe detection for minimized terminal
+  let touchStartX, touchStartY;
+  
+  document.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  });
+  
+  document.addEventListener('touchend', (e) => {
+    if (!touchStartX || !touchStartY) return;
+    
+    const touchEndX = e.changedTouches[0].clientX;
+    const touchEndY = e.changedTouches[0].clientY;
+    
+    const deltaX = touchStartX - touchEndX;
+    const deltaY = touchStartY - touchEndY;
+    
+    // Detect upward swipe to restore minimized terminal
+    if (deltaY > 50 && Math.abs(deltaX) < 100) {
+      const hackerDisplay = document.getElementById('hackerTerminalDisplay');
+      if (hackerDisplay && hackerDisplay.style.display !== 'none') {
+        restoreTerminal();
+      }
+    }
+    
+    touchStartX = null;
+    touchStartY = null;
+  });
+}
+
+// Prevent zoom on input focus (if any inputs are added later)
+function preventZoomOnFocus() {
+  const viewport = document.querySelector('meta[name="viewport"]');
+  
+  document.addEventListener('focusin', () => {
+    if (viewport) {
+      viewport.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+    }
+  });
+  
+  document.addEventListener('focusout', () => {
+    if (viewport) {
+      viewport.content = 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no';
+    }
+  });
+}
+
+// Add mobile-specific terminal behaviors
+function addMobileTerminalBehaviors() {
+  // Double-tap to restore minimized terminal
+  let lastTap = 0;
+  
+  document.addEventListener('touchend', (e) => {
+    const currentTime = new Date().getTime();
+    const tapLength = currentTime - lastTap;
+    
+    if (tapLength < 500 && tapLength > 0) {
+      // Double tap detected
+      const hackerDisplay = document.getElementById('hackerTerminalDisplay');
+      if (hackerDisplay && hackerDisplay.style.display !== 'none') {
+        restoreTerminal();
+        showTerminalFeedback('TERMINAL RESTORED VIA DOUBLE-TAP', 'success');
+      }
+    }
+    lastTap = currentTime;
+  });
+  
+  // Add mobile-specific keyboard shortcuts
+  document.addEventListener('keydown', (e) => {
+    // On mobile keyboards, provide alternative shortcuts
+    if (e.ctrlKey && e.key === 'h') { // Ctrl+H to toggle hacker mode
+      e.preventDefault();
+      const minimizeBtn = document.getElementById('minimizeBtn');
+      if (minimizeBtn) {
+        minimizeBtn.click();
+      }
+    }
+  });
+  
+  // Optimize scroll behavior on mobile
+  const mainContent = document.querySelector('.main-content');
+  if (mainContent) {
+    mainContent.style.scrollBehavior = 'smooth';
+    mainContent.style.webkitOverflowScrolling = 'touch';
+  }
+}
+
+// Enhanced mobile terminal feedback
+function showMobileTerminalFeedback(message, type = 'info') {
+  const feedback = document.createElement('div');
+  feedback.className = `mobile-terminal-feedback mobile-feedback-${type}`;
+  feedback.textContent = message;
+  
+  feedback.style.cssText = `
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.95);
+    color: ${type === 'success' ? '#00ff00' : type === 'warning' ? '#ffff00' : type === 'error' ? '#ff0000' : '#00ffff'};
+    padding: 12px 20px;
+    border-radius: 8px;
+    border: 2px solid ${type === 'success' ? '#00ff00' : type === 'warning' ? '#ffff00' : type === 'error' ? '#ff0000' : '#00ffff'};
+    font-family: 'Fira Code', monospace;
+    font-size: 0.85rem;
+    z-index: 10000;
+    animation: mobileFeedbackSlideIn 0.4s ease-out;
+    box-shadow: 0 0 25px ${type === 'success' ? 'rgba(0, 255, 0, 0.4)' : type === 'warning' ? 'rgba(255, 255, 0, 0.4)' : type === 'error' ? 'rgba(255, 0, 0, 0.4)' : 'rgba(0, 255, 255, 0.4)'};
+    max-width: 90vw;
+    text-align: center;
+    backdrop-filter: blur(10px);
+  `;
+
+  document.body.appendChild(feedback);
+
+  // Add haptic feedback if supported
+  if (navigator.vibrate) {
+    const vibrationPattern = type === 'error' ? [100, 50, 100] : [50];
+    navigator.vibrate(vibrationPattern);
+  }
+
+  // Remove after 3 seconds
+  setTimeout(() => {
+    feedback.style.animation = 'mobileFeedbackSlideOut 0.4s ease-in forwards';
+    setTimeout(() => {
+      if (feedback.parentNode) {
+        feedback.parentNode.removeChild(feedback);
+      }
+    }, 400);
+  }, 3000);
+}
+
+// Add mobile feedback animations to CSS
+const mobileFeedbackStyles = document.createElement('style');
+mobileFeedbackStyles.textContent = `
+  @keyframes mobileFeedbackSlideIn {
+    from { 
+      transform: translateX(-50%) translateY(-20px);
+      opacity: 0;
+      scale: 0.8;
+    }
+    to { 
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+      scale: 1;
+    }
+  }
+  
+  @keyframes mobileFeedbackSlideOut {
+    from { 
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+      scale: 1;
+    }
+    to { 
+      transform: translateX(-50%) translateY(-20px);
+      opacity: 0;
+      scale: 0.8;
+    }
+  }
+  
+  /* Mobile-specific touch states */
+  .mobile-device .control.touched {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+  
+  .mobile-device .cyber-link:active,
+  .mobile-device .social-link:active,
+  .mobile-device .nav-skill-tag:active {
+    transform: scale(0.98);
+  }
+  
+  /* Improve readability on mobile */
+  @media (max-width: 768px) {
+    .mobile-device .terminal-text {
+      letter-spacing: 0.5px;
+    }
+    
+    .mobile-device .ascii-logo {
+      letter-spacing: 0px;
+    }
+    
+    .mobile-device .skill-text {
+      line-height: 1.4;
+    }
+    
+    .mobile-device .log-message {
+      line-height: 1.4;
+    }
+  }
+`;
+document.head.appendChild(mobileFeedbackStyles);

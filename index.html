@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>pran0x | Elite Cyber Arsenal</title>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -160,23 +163,31 @@
       <h2>> skills.sh --execute</h2>
       <div class="skills-matrix">
         <div class="skill-item" data-skill="flask">
-          <span class="skill-icon">⚙️</span>
-          <span class="skill-text">Flask + MySQL CTF systems</span>
+          <div class="skill-header">
+            <span class="skill-icon">⚙️</span>
+            <span class="skill-text">Flask + MySQL CTF systems</span>
+          </div>
           <div class="skill-bar"><div class="skill-progress" data-level="95"></div></div>
         </div>
         <div class="skill-item" data-skill="scripting">
-          <span class="skill-icon">🎛</span>
-          <span class="skill-text">Bash/Batch scripting for real-time ops</span>
+          <div class="skill-header">
+            <span class="skill-icon">🎛</span>
+            <span class="skill-text">Bash/Batch scripting for real-time ops</span>
+          </div>
           <div class="skill-bar"><div class="skill-progress" data-level="90"></div></div>
         </div>
         <div class="skill-item" data-skill="ui">
-          <span class="skill-icon">🖼️</span>
-          <span class="skill-text">Cyberpunk UX | JS & Tkinter Dashboards</span>
+          <div class="skill-header">
+            <span class="skill-icon">🖼️</span>
+            <span class="skill-text">Cyberpunk UX | JS & Tkinter Dashboards</span>
+          </div>
           <div class="skill-bar"><div class="skill-progress" data-level="88"></div></div>
         </div>
         <div class="skill-item" data-skill="effects">
-          <span class="skill-icon">⚡</span>
-          <span class="skill-text">Glass effects, CSS glow + CRT overlays</span>
+          <div class="skill-header">
+            <span class="skill-icon">⚡</span>
+            <span class="skill-text">Glass effects, CSS glow + CRT overlays</span>
+          </div>
           <div class="skill-bar"><div class="skill-progress" data-level="92"></div></div>
         </div>
       </div>
@@ -286,11 +297,11 @@
           <div class="certificate-item">
             <div class="certificate-info">
               <div><span class="highlight-text">Web Fundamentals | TryHackMe</span></div>
-              <div><span class="glow-text">Status: VERIFIED</span> | <span class="highlight-text">Issued: 11 June 2025</span></div>
+              <div><span class="glow-text">Status: VERIFIED</span><span class="highlight-text">Issued: 11 June 2025</span></div>
               <div class="indent">→ Application penetration testing</div>
               <div class="indent">→ Penetration Testing</div>
-            </div>            <a href="https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-UYKPX0TRA8.png" target="_blank" class="certificate-preview">
-              <img src="https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-UYKPX0TRA8.png" alt="Full-Stack Development Certificate" class="cert-thumbnail">
+            </div>            <a href="https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-UYKPX0TRA8.png" target="_blank" class="certificate-preview" onclick="event.preventDefault(); openCertificate('https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-UYKPX0TRA8.png');">
+              <img src="https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-UYKPX0TRA8.png" alt="Web Fundamentals Certificate" class="cert-thumbnail">
               <div class="cert-overlay">
                 <span class="cert-view-text">🔍 Click to view full certificate</span>
               </div>
@@ -300,12 +311,12 @@
           <div class="certificate-item">
             <div class="certificate-info">
               <div><span class="highlight-text">Cyber Security 101 | TryHackMe</span></div>
-              <div><span class="glow-text">Status: VERIFIED</span> | <span class="highlight-text">Issued: 15 May 2025</span></div>
+              <div><span class="glow-text">Status: VERIFIED</span><span class="highlight-text">Issued: 15 May 2025</span></div>
               <div class="indent">→ Security analysis</div>
               <div class="indent">→ General Cyber</div>
               <div class="indent">→ Purple</div>
               <div class="indent">→ Linux</div>
-            </div>            <a href="https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-ZWZBH7JZH6.png" target="_blank" class="certificate-preview">
+            </div>            <a href="https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-ZWZBH7JZH6.png" target="_blank" class="certificate-preview" onclick="event.preventDefault(); openCertificate('https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-ZWZBH7JZH6.png');">
               <img src="https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-ZWZBH7JZH6.png" alt="Cybersecurity Fundamentals Certificate" class="cert-thumbnail">
               <div class="cert-overlay">
                 <span class="cert-view-text">🔍 Click to view full certificate</span>
@@ -316,12 +327,12 @@
             <div class="certificate-item">
             <div class="certificate-info">
               <div><span class="highlight-text">Pre Security | TryHackMe</span></div>
-              <div><span class="glow-text">Status: VERIFIED</span> | <span class="highlight-text">Issued: 22 April 2025</span></div>
+              <div><span class="glow-text">Status: VERIFIED</span><span class="highlight-text">Issued: 22 April 2025</span></div>
               <div class="indent">→ Security analysis</div>
               <div class="indent">→ General Cyber</div>
               <div class="indent">→ Linux </div>
-            </div>            <a href="https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-EMS6JR5HFB.png" target="_blank" class="certificate-preview">
-              <img src="https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-EMS6JR5HFB.png" alt="Full-Stack Development Certificate" class="cert-thumbnail">
+            </div>            <a href="https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-EMS6JR5HFB.png" target="_blank" class="certificate-preview" onclick="event.preventDefault(); openCertificate('https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-EMS6JR5HFB.png');">
+              <img src="https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-EMS6JR5HFB.png" alt="Pre Security Certificate" class="cert-thumbnail">
               <div class="cert-overlay">
                 <span class="cert-view-text">🔍 Click to view full certificate</span>
               </div>
