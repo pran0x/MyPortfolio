@@ -362,11 +362,11 @@ function handleBootSequence() {
       }
       
       // Add some random delay to make it feel more realistic
-      const randomDelay = Math.random() * 200;
+      const randomDelay = Math.random() * 50;
       setTimeout(() => {
         line.classList.add('completed');
-      }, 800 + randomDelay);
-    }, index * 700 + 300);
+      }, 200 + randomDelay);
+    }, index * 200 + 100);
   });
   
   // Transition to main terminal after boot sequence
@@ -374,8 +374,8 @@ function handleBootSequence() {
     bootSequence.style.display = 'none';
     mainTerminal.style.opacity = '1';
     mainTerminal.style.transform = 'translateY(0)';
-    mainTerminal.style.transition = 'all 1.5s ease-out';
-  }, 12000); // Match the CSS animation duration
+    mainTerminal.style.transition = 'all 0.8s ease-out';
+  }, 3500); // Much faster boot sequence
 }
 
 // Add realistic hacker-style boot effects
