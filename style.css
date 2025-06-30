@@ -1082,8 +1082,8 @@ body {
 
 .nav-profile-image-container {
   position: relative;
-  width: 120px;
-  height: 120px;
+  width: 180px;
+  height: 180px;
   overflow: hidden;
   border-radius: 50%;
   border: 3px solid #00ff00;
@@ -1126,7 +1126,8 @@ body {
 .nav-profile-name {
   font-family: 'Orbitron', monospace;
   color: #00ff00;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
+  font-weight: 700;
   margin: 0;
   text-shadow: 0 0 10px #00ff00;
   animation: navNameGlow 3s ease-in-out infinite alternate;
@@ -1139,7 +1140,8 @@ body {
 
 .nav-profile-status {
   color: #00ffff;
-  font-size: 0.8rem;
+  font-size: 1.0rem;
+  font-weight: 500;
   margin: 0;
   text-shadow: 0 0 10px #00ffff;
   letter-spacing: 1px;
@@ -1447,8 +1449,8 @@ body {
   }
 
   .nav-profile-image-container {
-    width: 80px;
-    height: 80px;
+    width: 120px;
+    height: 120px;
     margin-bottom: 0.3rem;
   }
 
@@ -1471,6 +1473,14 @@ body {
     font-size: 0.7rem;
     padding: 0.3rem 0.6rem;
     min-height: 28px;
+  }
+
+  .nav-profile-name {
+    font-size: 1.2rem;
+  }
+
+  .nav-profile-status {
+    font-size: 0.9rem;
   }
 
   .nav-achievement-item {
@@ -1505,8 +1515,8 @@ body {
     box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
   }
     .nav-profile-image-container {
-    width: 80px;
-    height: 80px;
+    width: 120px;
+    height: 120px;
   }
 }
 
@@ -2668,8 +2678,8 @@ body:has(.terminal.maximized) .grid-overlay {
   }
   
   .nav-profile-image-container {
-    width: 70px;
-    height: 70px;
+    width: 100px;
+    height: 100px;
   }
   
   .skill-item {
@@ -2895,8 +2905,8 @@ body:has(.terminal.maximized) .grid-overlay {
   }
   
   .nav-profile-image-container {
-    width: 80px;
-    height: 80px;
+    width: 120px;
+    height: 120px;
   }
   
   .boot-sequence {
