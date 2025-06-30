@@ -1241,10 +1241,12 @@ body {
 }
 
 .nav-resume-download:hover {
-  background: rgba(0, 255, 0, 0.2);
-  border-color: #00ff00;
-  box-shadow: 0 0 15px rgba(0, 255, 0, 0.4);
+  background: rgba(0, 255, 255, 0.2);
+  border-color: #00ffff;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.6), 0 0 30px rgba(0, 255, 255, 0.4), 0 0 45px rgba(0, 255, 255, 0.2);
   transform: scale(1.05);
+  color: #00ffff;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
 }
 
 .nav-resume-download::before {
@@ -1254,7 +1256,7 @@ body {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.4), transparent);
   transition: left 0.5s;
 }
 
@@ -1278,11 +1280,13 @@ body {
   padding: 0.1rem 0.4rem;
   border-radius: 3px;
   animation: navSecureStatus 2s infinite;
+  transition: all 0.3s ease;
 }
 
-@keyframes navSecureStatus {
-  0%, 90% { opacity: 1; }
-  95% { opacity: 0.5; }
+.nav-resume-download:hover .nav-download-status {
+  color: #00ff00;
+  background: rgba(0, 255, 0, 0.3);
+  box-shadow: 0 0 8px rgba(0, 255, 0, 0.5);
 }
 
 /* Animation for navigation feedback */
