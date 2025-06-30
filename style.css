@@ -1321,6 +1321,80 @@ body {
     conic-gradient(from 0deg, #00ff00, #00ffff, #00ff00);
 }
 
+/* Floating Back to Top Button */
+.back-to-top {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  width: 60px;
+  height: 60px;
+  background: rgba(0, 255, 255, 0.15);
+  border: 2px solid #00ffff;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(15px);
+  box-shadow: 
+    0 8px 32px rgba(0, 255, 255, 0.3),
+    0 0 0 1px rgba(0, 255, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transform: translateY(20px);
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top.hidden {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+}
+
+.back-to-top.scrolling-down {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1.05);
+  box-shadow: 
+    0 12px 40px rgba(0, 255, 255, 0.4),
+    0 0 0 2px rgba(0, 255, 255, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.back-to-top:hover {
+  background: rgba(0, 255, 255, 0.25);
+  box-shadow: 
+    0 16px 48px rgba(0, 255, 255, 0.5),
+    0 0 0 2px rgba(0, 255, 255, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transform: translateY(-3px) scale(1.1);
+  border-color: #00ffff;
+}
+
+.back-icon {
+  font-size: 1.2rem;
+  color: #00ffff;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.back-text {
+  font-size: 0.6rem;
+  color: #00ffff;
+  font-family: 'Fira Code', monospace;
+  font-weight: bold;
+  margin-top: 2px;
+}
+
 /* Developer Credit Section */
 .developer-credit {
   margin-top: 2rem;
@@ -2259,7 +2333,7 @@ body:has(.terminal.maximized) .grid-overlay {
   text-shadow: 0 0 5px #00ffff;
   padding: 0.1rem 0.4rem;
   border: 1px solid rgba(0, 255, 255, 0.3);
-  border-radius: 3px;
+   border-radius: 3px;
   background: rgba(0, 255, 255, 0.1);
   font-size: 0.7rem;
   min-width: 35px;
@@ -2296,7 +2370,7 @@ body:has(.terminal.maximized) .grid-overlay {
   40% { 
     transform: translateX(2px);
     color: #00ff00;
-    text-shadow: -2px 0 #ff0000;
+          text-shadow: -2px 0 #ff0000;
   }
   60% { 
     transform: translateX(-1px);
@@ -2487,439 +2561,28 @@ body:has(.terminal.maximized) .grid-overlay {
   }
 }
 
-/* Additional Mobile-Specific Optimizations */
-
-/* Boot sequence mobile improvements */
-@media (max-width: 768px) {
-  .boot-sequence {
-    padding-left: 2%;
-    font-size: 0.9rem;
-  }
-  
-  .boot-text {
-    font-size: 0.75rem;
-    line-height: 1.4;
-    max-width: 95%;
-  }
-  
-  .boot-line {
-    margin: 0.3rem 0;
-    word-break: break-word;
-  }
-  
-  .boot-line.boot-header {
-    font-size: 0.9rem;
-    margin-bottom: 0.8rem;
-  }
-  
-  .loading-bar {
-    width: 90%;
-    height: 4px;
-    margin: 1rem 0;
-  }
+/* Dynamic Back to Top Button Animations */
+@keyframes buttonPulse {
+  0% { box-shadow: 0 8px 32px rgba(0, 255, 255, 0.3), 0 0 0 1px rgba(0, 255, 255, 0.1); }
+  50% { box-shadow: 0 12px 40px rgba(0, 255, 255, 0.5), 0 0 0 2px rgba(0, 255, 255, 0.2); }
+  100% { box-shadow: 0 8px 32px rgba(0, 255, 255, 0.3), 0 0 0 1px rgba(0, 255, 255, 0.1); }
 }
 
-/* Certificate modal mobile improvements */
-@media (max-width: 768px) {
-  .certificate-modal-content {
-    padding: 10px;
-    width: 95%;
-  }
-  
-  .certificate-close {
-    top: 10px;
-    right: 15px;
-    font-size: 30px;
-  }
-  
-  .certificate-full-image {
-    max-width: 100%;
-    max-height: 80vh;
-    border-width: 2px;
-  }
-  
-  /* Certificate items mobile - Compact */
-  .certificate-item {
-    flex-direction: column !important;
-    gap: 1rem !important;
-    align-items: center !important;
-    text-align: center !important;
-    padding: 1rem 0.8rem !important;
-    margin-bottom: 1.5rem !important;
-  }
-
-  .certificate-info {
-    order: 2;
-    width: 100%;
-  }
-
-  .certificate-info .highlight-text {
-    font-size: 0.9rem !important;
-    margin-bottom: 0.5rem !important;
-  }
-
-  .certificate-info .glow-text {
-    font-size: 0.8rem !important;
-    margin-bottom: 0.8rem !important;
-    white-space: nowrap !important;
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-  }
-
-  .certificate-info .indent {
-    margin-left: 0 !important;
-    font-size: 0.75rem !important;
-    margin: 0.2rem 0 !important;
-    text-align: center !important;
-  }
-
-  .certificate-preview {
-    order: 1;
-    width: 100% !important;
-    max-width: 280px !important;
-    height: auto !important;
-    min-height: 200px !important;
-  }
-
-  .cert-thumbnail {
-    width: 100% !important;
-    height: auto !important;
-    min-height: 200px !important;
-    object-fit: contain !important;
-  }
-
-  .cert-view-text {
-    font-size: 0.8rem !important;
-    padding: 0.6rem !important;
-  }
+@keyframes buttonBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
 }
 
-/* Shutdown overlay mobile */
-@media (max-width: 768px) {
-  .shutdown-overlay {
-    padding: 1rem;
-  }
-  
-  .shutdown-text {
-    font-size: 1rem;
-    line-height: 1.6;
-  }
-  
-  .shutdown-line {
-    margin: 0.4rem 0;
-    word-break: break-word;
-  }
-  
-  .shutdown-final {
-    font-size: 1.1rem;
-    margin-top: 1.5rem !important;
-  }
+.back-to-top.scrolling-down {
+  animation: buttonPulse 2s ease-in-out infinite, buttonBounce 1s ease-in-out infinite;
 }
 
-/* Performance optimizations for mobile */
-@media (max-width: 768px) {
-  /* Reduce animation complexity on mobile */
-  .block::before {
-    animation: none;
-  }
-  
-  .cyber-nav::before {
-    animation: none;
-  }
-  
-  .developer-credit::before {
-    animation: none;
-  }
-  
-  /* Simplify matrix background on mobile */
-  .matrix-bg {
-    animation-duration: 8s; /* Slower animation */
-  }
-  
-  .grid-overlay {
-    animation: none; /* Disable moving grid on mobile */
-    opacity: 0.3;
-  }
-  
-  /* Reduce glow effects intensity on mobile */
-  .terminal {
-    animation: none;
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
-  }
-  
-  .ascii-logo {
-    animation: none;
-    text-shadow: 0 0 5px #00ff00;
-  }
-  
-  /* Disable cursor blink animation on very small screens */
-  .boot-line::after {
-    animation-duration: 1.2s;
-  }
+/* Hover enhancement for dynamic button */
+.back-to-top:hover {
+  animation: none; /* Stop other animations on hover */
 }
 
-/* Ultra-small mobile devices */
-@media (max-width: 320px) {
-  .terminal {
-    margin: 0.1rem;
-    padding: 0.6rem;
-  }
-  
-  .block {
-    padding: 0.8rem 0.6rem;
-    margin: 1rem 0;
-  }
-  
-  .terminal-header {
-    margin-bottom: 1rem;
-  }
-  
-  .ascii-logo {
-    font-size: 0.25rem;
-    line-height: 0.9;
-  }
-  
-  .typewriter {
-    font-size: 0.75rem;
-  }
-  
-  .nav-profile-image-container {
-    width: 100px;
-    height: 100px;
-  }
-  
-  .skill-item {
-    padding: 0.6rem;
-  }
-  
-  .social-link {
-    font-size: 0.6rem;
-    padding: 0.25rem 0.4rem;
-    min-width: 45px;
-  }
-  
-  .cyber-link {
-    padding: 0.8rem;
-    font-size: 0.85rem;
-  }
-  
-  .terminal-text {
-    padding: 0.6rem;
-    font-size: 0.7rem;
-  }
-  
-  .log-entry {
-    padding: 0.3rem;
-  }
-  
-  .timestamp {
-    font-size: 0.7rem;
-  }
-  
-  .log-level {
-    font-size: 0.65rem;
-    padding: 0.15rem 0.3rem;
-  }
-  
-  .log-message {
-    font-size: 0.75rem;
-  }
-  
-  .certificate-item {
-    padding: 0.8rem 0.6rem !important;
-    gap: 0.8rem !important;
-  }
-  
-  .certificate-preview {
-    max-width: 240px !important;
-    min-height: 180px !important;
-  }
-  
-  .cert-thumbnail {
-    min-height: 180px !important;
-  }
-  
-  .certificate-info .highlight-text {
-    font-size: 0.85rem !important;
-  }
-  
-  .certificate-info .glow-text {
-    font-size: 0.75rem !important;
-  }
-  
-  .certificate-info .indent {
-    font-size: 0.7rem !important;
-  }
-  
-  .cert-view-text {
-    font-size: 0.75rem !important;
-    padding: 0.5rem !important;
-  }
-  
-  .nav-resume-download {
-    padding: 0.6rem 1rem !important;
-    font-size: 0.85rem !important;
-    margin: 0 auto !important;
-    align-self: center !important;
-  }
-  
-  .nav-resume {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    width: 100% !important;
-    text-align: center !important;
-  }
-  
-  .quote-container {
-    font-size: 0.8rem !important;
-    padding: 0 0.4rem !important;
-  }
-  
-  .quote-text {
-    max-width: calc(100% - 3rem) !important;
-    font-size: 0.8rem !important;
-  }
-  
-  .quote-mark {
-    font-size: 1.2rem !important;
-  }
-  
-  .quote-author {
-    font-size: 0.75rem !important;
-    margin-top: 0.5rem !important;
-  }
-}
-
-/* High DPI mobile displays */
-@media (-webkit-min-device-pixel-ratio: 2) and (max-width: 768px) {
-  .ascii-logo {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  
-  .terminal-text {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  
-  .cert-thumbnail {
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
-  }
-}
-
-/* Dark mode mobile optimization */
-@media (prefers-color-scheme: dark) and (max-width: 768px) {
-   .terminal {
-    background: rgba(0, 0, 0, 0.95);
-  }
-  
-  .block {
-    background: rgba(0, 255, 0, 0.03);
-  }
-  
-  .cyber-nav {
-    background: rgba(0, 255, 0, 0.03);
-  }
-}
-
-/* Reduce motion for users who prefer it */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-  
-  .boot-sequence {
-    animation: none;
-  }
-  
-  .boot-line {
-    animation: none;
-    opacity: 1;
-    width: 100%;
-  }
-  
-  .loading-bar::before {
-    animation: none;
-    left: 0;
-  }
-  
-  .matrix-bg,
-  .grid-overlay,
-  .crt-overlay {
-    animation: none;
-  }
-}
-
-/* Battery optimization for mobile */
-@media (max-width: 768px) and (hover: none) {
-  /* Disable resource-intensive animations when on mobile */
-  .hacker-terminal-display::before {
-    animation: none;
-  }
-  
-  .hacker-terminal-display::after {
-    animation: none;
-    opacity: 0;
-  }
-  
-  .skill-progress::after {
-    animation: none;
-  }
-  
-  /* Simplify text shadows for better performance */
-  .highlight-text,
-  .glow-text {
-    text-shadow: 0 0 3px currentColor;
-  }
-  
-  .nav-profile-name {
-    animation: none;
-    text-shadow: 0 0 5px #00ff00;
-  }
-  
-  .nav-profile-status {
-    animation: none;
-  }
-}
-
-/* Orientation change handling */
-@media (orientation: landscape) and (max-height: 500px) {
-  .terminal {
-    margin: 0.25rem;
-    padding: 0.5rem;
-  }
-  
-  .hero {
-    margin: 1.5rem 0;
-  }
-  
-  .ascii-logo {
-    font-size: 0.4rem;
-  }
-  
-  .typewriter {
-    font-size: 0.9rem;
-  }
-  
-  .block {
-    margin: 1rem 0;
-    padding: 1rem;
-  }
-  
-  .nav-profile-image-container {
-    width: 120px;
-    height: 120px;
-  }
-  
-  .boot-sequence {
-    padding-left: 2%;
-  }
-  
-  .boot-text {
-    font-size: 0.7rem;
-  }
+.back-to-top:active {
+  transform: translateY(1px) scale(0.95);
+  transition: all 0.1s ease;
 }
