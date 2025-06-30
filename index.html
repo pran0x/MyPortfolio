@@ -124,11 +124,15 @@
           </pre>
         </div>
         <h1 class="typewriter" id="systemClock">> SYSTEM CLOCK SYNCED: 2025-06-29T23:42:00Z</h1>        <div class="status-indicators">
+          <a href="#about" class="status-link"><span class="status-dot active"></span> ABOUT ME</a>
+          <a href="#skills" class="status-link"><span class="status-dot active"></span> SKILLS</a>
+          <a href="#tools" class="status-link"><span class="status-dot active"></span> TOOLS</a>
+          <a href="#writeups" class="status-link"><span class="status-dot active"></span> WRITEUPS</a>
           <a href="#experience" class="status-link"><span class="status-dot active"></span> EXPERIENCE</a>
           <a href="#achievement" class="status-link"><span class="status-dot active"></span> ACHIEVEMENT</a>
           <a href="#certificates" class="status-link"><span class="status-dot active"></span> CERTIFICATES</a>
         </div>
-      </section><section class="block">
+      </section><section class="block" id="about">
         <h2>> whoami</h2>
         <div class="command-output">
           <div class="terminal-text">
@@ -158,6 +162,125 @@
           </div>
         </div>
       </section>
+
+    <section class="block" id="skills">
+      <h2>> ./scan_skills.sh --detailed</h2>
+      <div class="command-output">
+        <div class="terminal-text">
+          <div class="terminal-prompt">┌──(pran0x㉿portfolio)-[~/skills]</div>
+          <div class="terminal-prompt">└─$ python3 skill_analyzer.py</div>
+          <br>
+          <div><span class="highlight-text">PROGRAMMING_LANGUAGES:</span></div>
+          <div class="indent">→ Python (Advanced) - Flask, Django, Automation Scripts</div>
+          <div class="indent">→ JavaScript (Advanced) - React, Node.js, Express</div>
+          <div class="indent">→ PHP (Intermediate) - Web Applications, CTF Platforms</div>
+          <div class="indent">→ Bash/PowerShell (Advanced) - System Administration</div>
+          <div class="indent">→ SQL (Advanced) - MySQL, PostgreSQL, NoSQL</div>
+          <br>
+          <div><span class="highlight-text">SECURITY_SKILLS:</span></div>
+          <div class="indent">→ Penetration Testing (OWASP Top 10, Network Security)</div>
+          <div class="indent">→ Web Application Security (SQLi, XSS, CSRF, IDOR)</div>
+          <div class="indent">→ Digital Forensics & Incident Response</div>
+          <div class="indent">→ Malware Analysis & Reverse Engineering</div>
+          <div class="indent">→ Social Engineering & Physical Security</div>
+          <br>
+          <div><span class="highlight-text">FRAMEWORKS_&_TOOLS:</span></div>
+          <div class="indent">→ Web: Flask, Django, React, Express.js</div>
+          <div class="indent">→ Security: Burp Suite, Metasploit, Nmap, Wireshark</div>
+          <div class="indent">→ DevOps: Docker, Git, Linux Administration</div>
+          <div class="indent">→ Databases: MySQL, MongoDB, Redis</div>
+          <br>
+          <div><span class="glow-text">SPECIALIZATION: CTF Platform Development & Security Research</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="tools">
+      <h2>> ls ~/arsenal/ --recursive</h2>
+      <div class="command-output">
+        <div class="terminal-text">
+          <div class="terminal-prompt">┌──(pran0x㉿portfolio)-[~/tools]</div>
+          <div class="terminal-prompt">└─$ find . -type f -name "*.tool" | head -20</div>
+          <br>
+          <div><span class="highlight-text">RECONNAISSANCE_TOOLS:</span></div>
+          <div class="indent">→ Nmap - Network discovery and security auditing</div>
+          <div class="indent">→ Subfinder - Fast passive subdomain discovery</div>
+          <div class="indent">→ Amass - In-depth attack surface mapping</div>
+          <div class="indent">→ Gobuster - Directory/file brute-forcer</div>
+          <br>
+          <div><span class="highlight-text">WEB_APPLICATION_TESTING:</span></div>
+          <div class="indent">→ Burp Suite Professional - Web vulnerability scanner</div>
+          <div class="indent">→ OWASP ZAP - Security testing proxy</div>
+          <div class="indent">→ SQLMap - Automatic SQL injection tool</div>
+          <div class="indent">→ Nikto - Web server scanner</div>
+          <br>
+          <div><span class="highlight-text">EXPLOITATION_FRAMEWORKS:</span></div>
+          <div class="indent">→ Metasploit Framework - Penetration testing platform</div>
+          <div class="indent">→ Cobalt Strike - Advanced threat emulation</div>
+          <div class="indent">→ Empire - Post-exploitation framework</div>
+          <br>
+          <div><span class="highlight-text">FORENSICS_&_ANALYSIS:</span></div>
+          <div class="indent">→ Wireshark - Network protocol analyzer</div>
+          <div class="indent">→ Volatility - Memory forensics framework</div>
+          <div class="indent">→ Autopsy - Digital forensics platform</div>
+          <div class="indent">→ John the Ripper - Password cracking tool</div>
+          <br>
+          <div><span class="highlight-text">CUSTOM_TOOLS:</span></div>
+          <div class="indent">→ CTF Platform Engine (Python/Flask)</div>
+          <div class="indent">→ Vulnerability Scanner (Custom Scripts)</div>
+          <div class="indent">→ Payload Generator (Multi-language)</div>
+          <br>
+          <div><span class="glow-text">ARSENAL_STATUS: Continuously updated with latest security tools</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="writeups">
+      <h2>> cat ~/writeups/index.md</h2>
+      <div class="command-output">
+        <div class="terminal-text">
+          <div class="terminal-prompt">┌──(pran0x㉿portfolio)-[~/writeups]</div>
+          <div class="terminal-prompt">└─$ ls -la *.md | head -10</div>
+          <br>
+          <div><span class="highlight-text">RECENT_WRITEUPS:</span></div>
+          <br>
+          <div class="writeup-item">
+            <div><span class="glow-text">📝 TryHackMe: Overpass Series Complete Walkthrough</span></div>
+            <div><span class="highlight-text">DATE:</span> 2025-06-15 | <span class="highlight-text">DIFFICULTY:</span> Medium-Hard</div>
+            <div class="indent">→ Web exploitation, privilege escalation, and persistence</div>
+            <div class="indent">→ Detailed analysis of common misconfigurations</div>
+          </div>
+          <br>
+          <div class="writeup-item">
+            <div><span class="glow-text">📝 Custom CTF Platform: SQL Injection Deep Dive</span></div>
+            <div><span class="highlight-text">DATE:</span> 2025-06-01 | <span class="highlight-text">DIFFICULTY:</span> Advanced</div>
+            <div class="indent">→ Advanced SQL injection techniques and bypasses</div>
+            <div class="indent">→ Custom payload development and automation</div>
+          </div>
+          <br>
+          <div class="writeup-item">
+            <div><span class="glow-text">📝 Buffer Overflow Exploitation Tutorial</span></div>
+            <div><span class="highlight-text">DATE:</span> 2025-05-20 | <span class="highlight-text">DIFFICULTY:</span> Advanced</div>
+            <div class="indent">→ Stack-based buffer overflow exploitation</div>
+            <div class="indent">→ Shellcode development and ASLR bypasses</div>
+          </div>
+          <br>
+          <div class="writeup-item">
+            <div><span class="glow-text">📝 Web3 Smart Contract Security Analysis</span></div>
+            <div><span class="highlight-text">DATE:</span> 2025-05-10 | <span class="highlight-text">DIFFICULTY:</span> Expert</div>
+            <div class="indent">→ Solidity vulnerability assessment</div>
+            <div class="indent">→ DeFi protocol security review</div>
+          </div>
+          <br>
+          <div><span class="highlight-text">BLOG_STATS:</span></div>
+          <div class="indent">→ 25+ technical writeups published</div>
+          <div class="indent">→ 10,000+ readers reached</div>
+          <div class="indent">→ Focus: Web security, CTF solutions, tool development</div>
+          <br>
+          <div><span class="glow-text">STATUS: Regular contributor to cybersecurity knowledge base</span></div>
+        </div>
+      </div>
+    </section>
 
     <section class="block">
       <h2>> skills.sh --execute</h2>
