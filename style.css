@@ -2331,7 +2331,7 @@ body:has(.terminal.maximized) .grid-overlay {
     filter: hue-rotate(135deg) contrast(0.7);
   }
   70% {
-    transform: translate(-1px, -2px) scale(1.002);
+       transform: translate(-1px, -2px) scale(1.002);
     filter: hue-rotate(225deg) contrast(1.1);
   }
   80% {
@@ -2899,5 +2899,425 @@ body:has(.terminal.maximized) .grid-overlay {
   50% { 
     transform: scale(1.3); 
     opacity: 0.8;
+  }
+}
+
+/* Skill Badges with Technology Logos */
+.skill-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1rem 0;
+  justify-content: center;
+}
+
+.skill-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  background: rgba(0, 255, 0, 0.1);
+  border: 2px solid rgba(0, 255, 0, 0.3);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-badge:hover {
+  transform: translateY(-5px) scale(1.05);
+  border-color: #00ff00;
+  box-shadow: 0 10px 25px rgba(0, 255, 0, 0.3);
+  background: rgba(0, 255, 0, 0.2);
+}
+
+.skill-badge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.skill-badge:hover::before {
+  left: 100%;
+}
+
+.skill-icon {
+  width: 40px;
+  height: 40px;
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.skill-badge:hover .skill-icon {
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 10px currentColor);
+}
+
+/* Technology Logo Icons using CSS */
+.c-icon {
+  background: #00599c;
+  border-radius: 8px;
+  position: relative;
+}
+
+.c-icon::before {
+  content: 'C';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  font-family: 'Orbitron', monospace;
+}
+
+.cpp-icon {
+  background: #00599c;
+  border-radius: 8px;
+  position: relative;
+}
+
+.cpp-icon::before {
+  content: 'C++';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: bold;
+  font-size: 10px;
+  font-family: 'Orbitron', monospace;
+}
+
+.csharp-icon {
+  background: #239120;
+  border-radius: 8px;
+  position: relative;
+}
+
+.csharp-icon::before {
+  content: 'C#';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  font-family: 'Orbitron', monospace;
+}
+
+.java-icon {
+  background: #ed8b00;
+  border-radius: 8px;
+  position: relative;
+}
+
+.java-icon::before {
+  content: 'JAVA';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: bold;
+  font-size: 9px;
+  font-family: 'Orbitron', monospace;
+}
+
+.python-icon {
+  background: linear-gradient(45deg, #3776ab 50%, #ffd43b 50%);
+  border-radius: 8px;
+  position: relative;
+}
+
+.python-icon::before {
+  content: 'PY';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  font-family: 'Orbitron', monospace;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+}
+
+.asm-icon {
+  background: #525252;
+  border-radius: 8px;
+  position: relative;
+}
+
+.asm-icon::before {
+  content: 'ASM';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #00ff00;
+  font-weight: bold;
+  font-size: 10px;
+  font-family: 'Fira Code', monospace;
+  text-shadow: 0 0 5px #00ff00;
+}
+
+.html-icon {
+  background: #e34f26;
+  border-radius: 8px;
+  position: relative;
+}
+
+.html-icon::before {
+  content: 'HTML';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: bold;
+  font-size: 9px;
+  font-family: 'Orbitron', monospace;
+}
+
+.css-icon {
+  background: #1572b6;
+  border-radius: 8px;
+  position: relative;
+}
+
+.css-icon::before {
+  content: 'CSS';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: bold;
+  font-size: 10px;
+  font-family: 'Orbitron', monospace;
+}
+
+.javascript-icon {
+  background: #f7df1e;
+  border-radius: 8px;
+  position: relative;
+}
+
+.javascript-icon::before {
+  content: 'JS';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #000;
+  font-weight: bold;
+  font-size: 12px;
+  font-family: 'Orbitron', monospace;
+}
+
+.php-icon {
+  background: #777bb4;
+  border-radius: 8px;
+  position: relative;
+}
+
+.php-icon::before {
+  content: 'PHP';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: bold;
+  font-size: 10px;
+  font-family: 'Orbitron', monospace;
+}
+
+.bash-icon {
+  background: #4eaa25;
+  border-radius: 8px;
+  position: relative;
+}
+
+.bash-icon::before {
+  content: 'BASH';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: bold;
+  font-size: 9px;
+  font-family: 'Fira Code', monospace;
+}
+
+.kali-icon {
+  background: #557c94;
+  border-radius: 8px;
+  position: relative;
+}
+
+.kali-icon::before {
+  content: 'KALI';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #00ff00;
+  font-weight: bold;
+  font-size: 9px;
+  font-family: 'Fira Code', monospace;
+  text-shadow: 0 0 5px #00ff00;
+}
+
+.linux-icon {
+  background: #fcc624;
+  border-radius: 8px;
+  position: relative;
+}
+
+.linux-icon::before {
+  content: 'LINUX';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #000;
+  font-weight: bold;
+  font-size: 8px;
+  font-family: 'Orbitron', monospace;
+}
+
+.ubuntu-icon {
+  background: #e95420;
+  border-radius: 8px;
+  position: relative;
+}
+
+.ubuntu-icon::before {
+  content: 'UBUNTU';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: bold;
+  font-size: 7px;
+  font-family: 'Orbitron', monospace;
+}
+
+.powershell-icon {
+  background: #012456;
+  border-radius: 8px;
+  position: relative;
+}
+
+.powershell-icon::before {
+  content: 'PS';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #00ffff;
+  font-weight: bold;
+  font-size: 12px;
+  font-family: 'Fira Code', monospace;
+  text-shadow: 0 0 5px #00ffff;
+}
+
+.vscode-icon {
+  background: #007acc;
+  border-radius: 8px;
+  position: relative;
+}
+
+.vscode-icon::before {
+  content: 'CODE';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: bold;
+  font-size: 8px;
+  font-family: 'Orbitron', monospace;
+}
+
+.vstudio-icon {
+  background: #5c2d91;
+  border-radius: 8px;
+  position: relative;
+}
+
+.vstudio-icon::before {
+  content: 'VS';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  font-family: 'Orbitron', monospace;
+}
+
+/* Responsive Skill Badges */
+@media (max-width: 768px) {
+  .skill-badges {
+    gap: 0.8rem;
+  }
+  
+  .skill-badge {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .skill-icon {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .skill-icon::before {
+    font-size: 10px !important;
+  }
+  
+  .asm-icon::before,
+  .kali-icon::before,
+  .powershell-icon::before {
+    font-size: 8px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .skill-badge {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .skill-icon {
+    width: 25px;
+    height: 25px;
+  }
+  
+  .skill-icon::before {
+    font-size: 8px !important;
+  }
+  
+  .asm-icon::before,
+  .kali-icon::before,
+  .powershell-icon::before {
+    font-size: 6px !important;
   }
 }
