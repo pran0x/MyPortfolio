@@ -801,54 +801,11 @@ function initSystemClock() {
   setInterval(updateClock, 1000);
 }
 
-// Certificate modal functions
+// Certificate functions
 function openCertificate(imageUrl) {
-  const modal = document.getElementById('certificateModal');
-  const modalImage = document.getElementById('certificateImage');
-  
-  if (modal && modalImage) {
-    modalImage.src = imageUrl;
-    modal.style.display = 'block';
-    
-    // Prevent body scrolling when modal is open
-    document.body.style.overflow = 'hidden';
-    
-    // Add keyboard event listener for ESC key
-    document.addEventListener('keydown', handleModalKeydown);
-  }
+  // Open certificate in a new tab
+  window.open(imageUrl, '_blank');
 }
-
-function closeCertificate() {
-  const modal = document.getElementById('certificateModal');
-  
-  if (modal) {
-    modal.style.display = 'none';
-    
-    // Restore body scrolling
-    document.body.style.overflow = 'auto';
-    
-    // Remove keyboard event listener
-    document.removeEventListener('keydown', handleModalKeydown);
-  }
-}
-
-function handleModalKeydown(event) {
-  if (event.key === 'Escape') {
-    closeCertificate();
-  }
-}
-
-// Prevent modal close when clicking on the image itself
-document.addEventListener('DOMContentLoaded', function() {
-  const modalContent = document.querySelector('.certificate-modal-content');
-  const modalImage = document.getElementById('certificateImage');
-  
-  if (modalContent && modalImage) {
-    modalImage.addEventListener('click', function(event) {
-      event.stopPropagation();
-    });
-  }
-});
 
 // Terminal Controls Functionality
 function initTerminalControls() {
