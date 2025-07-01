@@ -2929,9 +2929,9 @@ body:has(.terminal.maximized) .grid-overlay {
 
 .skill-badge:hover {
   transform: translateY(-5px) scale(1.05);
-  border-color: #00ff00;
-  box-shadow: 0 10px 25px rgba(0, 255, 0, 0.3);
-  background: rgba(0, 255, 0, 0.2);
+  border-color: #00ffff;
+  box-shadow: 0 10px 25px rgba(0, 255, 255, 0.5);
+  background: rgba(0, 255, 255, 0.1);
 }
 
 .skill-badge::before {
@@ -2941,7 +2941,7 @@ body:has(.terminal.maximized) .grid-overlay {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(0, 255, 0, 0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.3), transparent);
   transition: left 0.5s;
 }
 
@@ -2959,7 +2959,7 @@ body:has(.terminal.maximized) .grid-overlay {
 
 .skill-badge:hover .skill-icon {
   transform: scale(1.1);
-  filter: drop-shadow(0 0 10px currentColor);
+  filter: drop-shadow(0 0 10px #00ffff);
 }
 
 /* Technology Logo Icons using actual logos */
