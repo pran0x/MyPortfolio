@@ -2962,315 +2962,107 @@ body:has(.terminal.maximized) .grid-overlay {
   filter: drop-shadow(0 0 10px currentColor);
 }
 
-/* Technology Logo Icons using CSS */
+/* Technology Logo Icons using actual logos */
 .c-icon {
-  background: #00599c;
+  background: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg') center/cover;
   border-radius: 8px;
   position: relative;
-}
-
-.c-icon::before {
-  content: 'C';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  font-weight: bold;
-  font-size: 14px;
-  font-family: 'Orbitron', monospace;
 }
 
 .cpp-icon {
-  background: #00599c;
+  background: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg') center/cover;
   border-radius: 8px;
   position: relative;
-}
-
-.cpp-icon::before {
-  content: 'C++';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  font-weight: bold;
-  font-size: 10px;
-  font-family: 'Orbitron', monospace;
 }
 
 .csharp-icon {
-  background: #239120;
+  background: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg') center/cover;
   border-radius: 8px;
   position: relative;
-}
-
-.csharp-icon::before {
-  content: 'C#';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  font-weight: bold;
-  font-size: 12px;
-  font-family: 'Orbitron', monospace;
 }
 
 .java-icon {
-  background: #ed8b00;
+  background: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg') center/cover;
   border-radius: 8px;
   position: relative;
-}
-
-.java-icon::before {
-  content: 'JAVA';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  font-weight: bold;
-  font-size: 9px;
-  font-family: 'Orbitron', monospace;
 }
 
 .python-icon {
-  background: linear-gradient(45deg, #3776ab 50%, #ffd43b 50%);
+  background: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg') center/cover;
   border-radius: 8px;
   position: relative;
-}
-
-.python-icon::before {
-  content: 'PY';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  font-weight: bold;
-  font-size: 12px;
-  font-family: 'Orbitron', monospace;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
 }
 
 .asm-icon {
-  background: #525252;
+  background: #525252 url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%2300ff00"><text x="12" y="16" text-anchor="middle" font-family="monospace" font-size="8" font-weight="bold">ASM</text></svg>') center/contain no-repeat;
   border-radius: 8px;
   position: relative;
-}
-
-.asm-icon::before {
-  content: 'ASM';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #00ff00;
-  font-weight: bold;
-  font-size: 10px;
-  font-family: 'Fira Code', monospace;
-  text-shadow: 0 0 5px #00ff00;
 }
 
 .html-icon {
-  background: #e34f26;
+  background: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg') center/cover;
   border-radius: 8px;
   position: relative;
-}
-
-.html-icon::before {
-  content: 'HTML';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  font-weight: bold;
-  font-size: 9px;
-  font-family: 'Orbitron', monospace;
 }
 
 .css-icon {
-  background: #1572b6;
+  background: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg') center/cover;
   border-radius: 8px;
   position: relative;
-}
-
-.css-icon::before {
-  content: 'CSS';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  font-weight: bold;
-  font-size: 10px;
-  font-family: 'Orbitron', monospace;
 }
 
 .javascript-icon {
-  background: #f7df1e;
+  background: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg') center/cover;
   border-radius: 8px;
   position: relative;
-}
-
-.javascript-icon::before {
-  content: 'JS';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #000;
-  font-weight: bold;
-  font-size: 12px;
-  font-family: 'Orbitron', monospace;
 }
 
 .php-icon {
-  background: #777bb4;
+  background: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg') center/cover;
   border-radius: 8px;
   position: relative;
-}
-
-.php-icon::before {
-  content: 'PHP';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  font-weight: bold;
-  font-size: 10px;
-  font-family: 'Orbitron', monospace;
 }
 
 .bash-icon {
-  background: #4eaa25;
+  background: url('https://bashlogo.com/img/symbol/png/full_colored_dark.png') center/cover;
   border-radius: 8px;
   position: relative;
-}
-
-.bash-icon::before {
-  content: 'BASH';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  font-weight: bold;
-  font-size: 9px;
-  font-family: 'Fira Code', monospace;
 }
 
 .kali-icon {
-  background: #557c94;
+  background: url('https://www.kali.org/images/kali-dragon-icon.svg') center/cover;
   border-radius: 8px;
   position: relative;
-}
-
-.kali-icon::before {
-  content: 'KALI';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #00ff00;
-  font-weight: bold;
-  font-size: 9px;
-  font-family: 'Fira Code', monospace;
-  text-shadow: 0 0 5px #00ff00;
 }
 
 .linux-icon {
-  background: #fcc624;
+  background: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg') center/cover;
   border-radius: 8px;
   position: relative;
-}
-
-.linux-icon::before {
-  content: 'LINUX';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #000;
-  font-weight: bold;
-  font-size: 8px;
-  font-family: 'Orbitron', monospace;
 }
 
 .ubuntu-icon {
-  background: #e95420;
+  background: url('https://assets.ubuntu.com/v1/29985a98-ubuntu-logo32.png') center/cover;
   border-radius: 8px;
   position: relative;
-}
-
-.ubuntu-icon::before {
-  content: 'UBUNTU';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  font-weight: bold;
-  font-size: 7px;
-  font-family: 'Orbitron', monospace;
 }
 
 .powershell-icon {
-  background: #012456;
+  background: url('https://raw.githubusercontent.com/PowerShell/PowerShell/master/assets/ps_black_64.svg') center/cover;
   border-radius: 8px;
   position: relative;
-}
-
-.powershell-icon::before {
-  content: 'PS';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #00ffff;
-  font-weight: bold;
-  font-size: 12px;
-  font-family: 'Fira Code', monospace;
-  text-shadow: 0 0 5px #00ffff;
 }
 
 .vscode-icon {
-  background: #007acc;
+  background: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg') center/cover;
   border-radius: 8px;
   position: relative;
-}
-
-.vscode-icon::before {
-  content: 'CODE';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  font-weight: bold;
-  font-size: 8px;
-  font-family: 'Orbitron', monospace;
 }
 
 .vstudio-icon {
-  background: #5c2d91;
+  background: url('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/visualstudio/visualstudio-plain.svg') center/cover;
   border-radius: 8px;
   position: relative;
-}
-
-.vstudio-icon::before {
-  content: 'VS';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  font-weight: bold;
-  font-size: 12px;
-  font-family: 'Orbitron', monospace;
 }
 
 /* Responsive Skill Badges */
