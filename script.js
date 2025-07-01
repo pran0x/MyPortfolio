@@ -6,6 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initialize navigation
   initNavigation();
   
+  // Initialize enhanced navigation
+  initEnhancedNavigation();
+  
   // Initialize terminal controls
   initTerminalControls();
   
@@ -40,6 +43,9 @@ document.addEventListener("DOMContentLoaded", () => {
   
   // Initialize hacker terminal display functionality
   initHackerTerminalDisplay();
+  
+  // Initialize enhanced navigation features
+  initEnhancedNavigation();
 });
 
 // Initialize hacker terminal display
@@ -803,8 +809,211 @@ function initSystemClock() {
 
 // Certificate functions
 function openCertificate(imageUrl) {
-  // Open certificate in a new tab
-  window.open(imageUrl, '_blank');
+  // Create modal overlay
+  const modal = document.createElement('div');
+  modal.className = 'certificate-modal';
+  modal.innerHTML = `
+    <div class="certificate-modal-content">
+      <div class="certificate-modal-header">
+        <h3>Certificate Viewer</h3>
+        <button class="modal-close-btn">&times;</button>
+      </div>
+      <div class="certificate-image-container">
+        <img src="${imageUrl}" alt="Certificate" class="certificate-full-image">
+      </div>
+      <div class="certificate-actions">
+        <a href="${imageUrl}" target="_blank" class="cert-action-btn">Open in New Tab</a>
+        <button onclick="downloadCertificate('${imageUrl}')" class="cert-action-btn">Download</button>
+      </div>
+    </div>
+  `;
+  
+  // Add modal styles
+  modal.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    animation: fadeIn 0.3s ease;
+  `;
+  
+  // Close modal functionality
+  const closeModal = () => {
+    modal.style.animation = 'fadeOut 0.3s ease';
+    setTimeout(() => document.body.removeChild(modal), 300);
+  };
+  
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+  
+  modal.querySelector('.modal-close-btn').addEventListener('click', closeModal);
+  
+  // Add to document
+  document.body.appendChild(modal);
+  
+  // Add required CSS for modal if not exists
+  if (!document.querySelector('#certificate-modal-styles')) {
+    const styles = document.createElement('style');
+    styles.id = 'certificate-modal-styles';
+    styles.textContent = `
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      @keyframes fadeOut {
+        from { opacity: 1; }
+        to { opacity: 0; }
+      }
+      .certificate-modal-content {
+        background: #000;
+        border: 2px solid #00ff9f;
+        border-radius: 10px;
+        max-width: 90vw;
+        max-height: 90vh;
+        overflow: auto;
+        position: relative;
+      }
+      .certificate-modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        border-bottom: 1px solid #00ff9f;
+        background: rgba(0, 255, 159, 0.1);
+      }
+      .certificate-modal-header h3 {
+        color: #00ff9f;
+        margin: 0;
+      }
+      .modal-close-btn {
+        background: none;
+        border: none;
+        color: #00ff9f;
+        font-size: 2rem;
+        cursor: pointer;
+        padding: 0;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .modal-close-btn:hover {
+        color: #fff;
+        background: rgba(255, 0, 0, 0.2);
+        border-radius: 50%;
+      }
+      .certificate-image-container {
+        padding: 1rem;
+        text-align: center;
+      }
+      .certificate-full-image {
+        max-width: 100%;
+        height: auto;
+        border: 1px solid #333;
+        border-radius: 5px;
+      }
+      .certificate-actions {
+        padding: 1rem;
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        border-top: 1px solid #333;
+      }
+      .cert-action-btn {
+        background: linear-gradient(45deg, #00ff9f, #00cc7f);
+        color: #000;
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        cursor: pointer;
+        font-weight: bold;
+        transition: all 0.3s ease;
+      }
+      .cert-action-btn:hover {
+        background: linear-gradient(45deg, #00cc7f, #00ff9f);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 255, 159, 0.3);
+      }
+    `;
+    document.head.appendChild(styles);
+  }
+}
+
+// Download certificate function
+function downloadCertificate(imageUrl) {
+  const link = document.createElement('a');
+  link.href = imageUrl;
+  link.download = `pran0x_certificate_${Date.now()}.png`;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
+// Enhanced Navigation System
+function initEnhancedNavigation() {
+  // Smooth scrolling for all internal links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        // Calculate offset to account for any fixed headers
+        const offsetTop = target.offsetTop - 20;
+        
+        // Smooth scroll to target
+        window.scrollTo({
+          top: offsetTop,
+          behavior: 'smooth'
+        });
+        
+        // Add visual feedback
+        target.style.transition = 'all 0.3s ease';
+        target.style.background = 'rgba(0, 255, 159, 0.1)';
+        setTimeout(() => {
+          target.style.background = '';
+        }, 1000);
+      }
+    });
+  });
+  
+  // Status indicator highlighting
+  updateStatusIndicators();
+  window.addEventListener('scroll', updateStatusIndicators);
+}
+
+// Update active status indicators based on current section
+function updateStatusIndicators() {
+  const sections = document.querySelectorAll('.block[id]');
+  const statusLinks = document.querySelectorAll('.status-link');
+  
+  let currentSection = '';
+  sections.forEach(section => {
+    const rect = section.getBoundingClientRect();
+    if (rect.top <= 100 && rect.bottom >= 100) {
+      currentSection = section.id;
+    }
+  });
+  
+  // Update status link active states
+  statusLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    if (href === `#${currentSection}`) {
+      link.classList.add('active');
+      link.querySelector('.status-dot').classList.add('active');
+    } else {
+      link.classList.remove('active');
+      link.querySelector('.status-dot').classList.remove('active');
+    }
+  });
 }
 
 // Terminal Controls Functionality
